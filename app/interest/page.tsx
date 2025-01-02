@@ -30,8 +30,11 @@ export default function Interest() {
   // Save the tags to sessionStorage
   const handleSave = () => {
     // Save tags to sessionStorage
-    sessionStorage.setItem("userTags", JSON.stringify(tags));
-    router.push("/about");
+    if (typeof window !== "undefined") {
+      // Simpan tags ke sessionStorage
+      sessionStorage.setItem("userTags", JSON.stringify(tags));
+      router.push("/about");
+    }
   };
 
   return (

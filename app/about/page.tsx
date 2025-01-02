@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import { FaPencil } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import InputField from "@/components/inputField";
 import { calculateAge } from "@/constant/calculateAge";
@@ -9,6 +9,7 @@ export default function About() {
   const router = useRouter();
   const [isEditingAbout, setIsEditingAbout] = useState(false);
   const [image, setImage] = useState<string | null>(null);
+  const [tags, setTags] = useState<string[] | null>(null);
   const [aboutData, setAboutData] = useState({
     displayName: "",
     gender: "",
@@ -18,6 +19,15 @@ export default function About() {
     height: "",
     weight: "",
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedTags = sessionStorage.getItem("userTags");
+      if (storedTags) {
+        setTags(JSON.parse(storedTags));
+      }
+    }
+  }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
@@ -300,24 +310,24 @@ export default function About() {
             />
           </div>
           <div className="p-4">
-            {sessionStorage.getItem("userTags") ? (
-              <div className="flex flex-wrap gap-2 mb-3">
-                {JSON.parse(sessionStorage.getItem("userTags")!).map(
-                  (tag: string, index: number) => (
+            <>
+              {tags && tags.length > 0 ? (
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {tags.map((tag, index) => (
                     <span
                       key={index}
                       className="px-4 py-2 bg-[rgba(255,255,255,0.06)] text-white text-sm font-semibold rounded-full hover:bg-[#B0BEC5] cursor-pointer transition duration-200 ease-in-out"
                     >
                       {tag}
                     </span>
-                  )
-                )}
-              </div>
-            ) : (
-              <h1 className="text-sm text-[rgba(255,255,255,0.52)] lg:text-base">
-                Add in your interest to find a better match
-              </h1>
-            )}
+                  ))}
+                </div>
+              ) : (
+                <h1 className="text-sm text-[rgba(255,255,255,0.52)] lg:text-base">
+                  Add in your interest to find a better match
+                </h1>
+              )}
+            </>
           </div>
         </section>
       </main>
