@@ -16,9 +16,6 @@
 
 ### **1. User Authentication (Front-End)**
 
-- **User Roles:**
-  - **Students:** Access learning resources, track progress, and view personal results.
-  - **Teachers:** Manage resources, view student activity, and monitor individual or class progress.
 - **Front-End Logic:** Implement user authentication interface for login, registration, and session management.
 
 ---
