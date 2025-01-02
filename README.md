@@ -1,7 +1,4 @@
-# Welcome to **YouApp-Test** 🎓✨
-
-**Empowering Learning with Seamless Management**  
-**YouApp-Test** is the ultimate solution for simplifying educational management for **students** and **teachers**. With an intuitive interface and powerful features, the platform combines ease of use and functionality for managing various learning activities.
+# **YouApp-Test**
 
 ---
 
@@ -14,9 +11,15 @@
 
 ## 🚀 **Key Features**
 
-### **1. User Authentication (Front-End)**
+### **1. User Authentication**
 
-- **Front-End Logic:** Implement user authentication interface for login, registration, and session management.
+- **Login and Register:** Users can log in or register to access the platform.
+- **Session Management:** Handles user sessions after login.
+
+### **2. About and Interest Pages**
+
+- **About Page:** Displays information about the application and its purpose.
+- **Interest Page:** Displays a list of user interests that can be managed or edited.
 
 ---
 
@@ -46,26 +49,26 @@ Have questions or want to collaborate? Reach out at:
 
 ## 👨‍💻 **How to Run the Project**
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/fifovalle/YOUAPP-TEST.git
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
    ```bash
    cd youapp-test
    npm install
    ```
 
-3. Start the development server:
+3. **Start the development server:**
 
    ```bash
    npm run dev
    ```
 
-4. Open the application in your browser:
+4. **Open the application in your browser:**
    ```plaintext
    http://localhost:3000
    ```
@@ -75,3 +78,5 @@ Have questions or want to collaborate? Reach out at:
 <div align="center">  
   &copy; 2024 **Naufal FIFA**  
 </div>
+
+---
