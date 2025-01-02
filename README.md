@@ -1,7 +1,3 @@
-Here’s the updated version of **YouApp-Test** with all quiz-related sections removed:
-
----
-
 # Welcome to **YouApp-Test** 🎓✨
 
 **Empowering Learning with Seamless Management**  
