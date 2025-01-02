@@ -1,101 +1,108 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function Home() {
+export default function Login() {
+  const router = useRouter();
+  const [email, setEmail] = useState(""); // Manages the email input
+  const [password, setPassword] = useState(""); // Manages the password input
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Toggles password visibility
+
+  // Toggle password visibility function
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <section className="min-h-screen flex items-center justify-center font-sans px-4 bg-radial-custom">
+      <main className="w-full max-w-md rounded-lg">
+        <h1 className="text-2xl text-white font-bold mb-6 ml-4">Login</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+        <form className="space-y-4">
+          {/* Email Input */}
+          <input
+            type="text"
+            placeholder="Enter Username/Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-4 rounded-md bg-[rgba(255,255,255,0.06)] text-white placeholder:text-gray-300 border border-transparent focus:ring-2"
+          />
+
+          {/* Password Input */}
+          <div className="relative">
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-4 rounded-md bg-[rgba(255,255,255,0.06)] text-white placeholder:text-gray-300 border border-transparent focus:ring-2 pr-10"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+            {/* Toggle Button for Password Visibility */}
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm"
+              style={{
+                background: "transparent",
+                borderRadius: "50%",
+                padding: "0.5rem",
+              }}
+            >
+              {isPasswordVisible ? (
+                <FaEye className="w-5 h-5" style={{ fill: "url(#grad1)" }} />
+              ) : (
+                <FaEyeSlash
+                  className="w-5 h-5"
+                  style={{ fill: "url(#grad1)" }}
+                />
+              )}
+            </button>
+
+            {/* Gradient for icon fill */}
+            <svg width="0" height="0">
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop
+                    offset="0%"
+                    style={{ stopColor: "#94783E", stopOpacity: 1 }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{ stopColor: "#D5BE88", stopOpacity: 1 }}
+                  />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="button"
+            onClick={() => router.push("/about")}
+            disabled={!email || !password}
+            className={`w-full py-2 bg-gradient-to-r from-[#62CDCB] to-[#4599DB] hover:bg-blue-700 rounded-md text-lg font-semibold text-white transition-all duration-300 ${
+              !email || !password
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:shadow-xl hover:shadow-[#4599DB]/50"
+            }`}
           >
-            Read our docs
+            Login
+          </button>
+        </form>
+
+        {/* Register Link */}
+        <p className="text-center text-sm text-gray-400 mt-4">
+          No account?{" "}
+          <a
+            onClick={() => router.push("/register")}
+            className="text-transparent bg-clip-text bg-[linear-gradient(74.08deg,_#94783E_-6.8%,_#F3EDA6_16.76%,_#F8FAE5_30.5%,_#FFE2BE_49.6%,_#D5BE88_78.56%,_#F8FAE5_89.01%,_#D5BE88_100.43%)] hover:underline cursor-pointer"
+          >
+            Register here
           </a>
-        </div>
+        </p>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </section>
   );
 }
