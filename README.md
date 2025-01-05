@@ -75,8 +75,8 @@ Have questions or want to collaborate? Reach out at:
 
 ---
 
-<div align="center">  
-  &copy; 2024 **Naufal FIFA**  
+<div align="center">
+  &copy; 2025 [Naufal FIFA]
 </div>
 
 ---
