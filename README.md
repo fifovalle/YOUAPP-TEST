@@ -34,7 +34,7 @@
 
 ## 📷 **Application Preview**
 
-🚧 **Coming Soon!** Screenshots showcasing the platform's UI/UX will be added soon.
+![proyek95](https://github.com/user-attachments/assets/ff314358-01ba-498a-a270-604fe5365460)
 
 ---
 
